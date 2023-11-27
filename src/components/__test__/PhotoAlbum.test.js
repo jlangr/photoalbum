@@ -1,12 +1,10 @@
 import {PhotoAlbum} from '../PhotoAlbum'
 import {act, fireEvent, render, screen, waitFor} from '@testing-library/react'
-import {testPhotos} from "./TestPhotos"
-import {fetchPhotos} from '../../clients/PhotosClient'
-import userEvent from "@testing-library/user-event";
+import {testPhotos} from './TestPhotos'
+import userEvent from "@testing-library/user-event"
 
-jest.mock('../../clients/PhotosClient', () => ({
-  fetchPhotos: jest.fn()
-}))
+import { fetchPhotos } from '../../clients/PhotosClient'
+jest.mock('../../clients/PhotosClient')
 
 describe('PhotoAlbum', () => {
   const typeIntoAlbumNumberInput = albumNumber => {
@@ -54,13 +52,13 @@ describe('PhotoAlbum', () => {
     })
 
     it('renders photos on submit', async () => {
-      fetchPhotos.mockImplementation(() => Promise.resolve(testPhotos))
+      fetchPhotos.mockReturnValueOnce(Promise.resolve(testPhotos))
       render(<PhotoAlbum/>)
-      typeIntoAlbumNumberInput('1')
+      typeIntoAlbumNumberInput('2')
 
-      clickRetrieveButton();
+      clickRetrieveButton()
 
-      // TODO how to verify album number is passed to the retrieve function
+      expect(fetchPhotos).toHaveBeenCalledWith('2')
       await waitFor(() => {
         expect(screen.getAllByRole('listitem')).toHaveLength(testPhotos.length)
       })
