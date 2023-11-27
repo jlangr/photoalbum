@@ -4,7 +4,7 @@ export const PhotoAlbum = () => {
   const [photos, setPhotos] = useState([])
 
   const retrievePhotos = () => {
-    setPhotos([...photos, {name: 'photo 1'}])
+    setPhotos([...photos, {id: '1', name: 'photo 1'}])
   }
 
   return (
@@ -15,7 +15,7 @@ export const PhotoAlbum = () => {
       </button>
       <div id='photos'>
         {photos.map(photo => (
-          <p role='article'>photo {photo.name}</p>
+          <p key={photo.id} role='article'>photo {photo.name}</p>
         ))}
       </div>
     </>)
