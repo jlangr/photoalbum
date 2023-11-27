@@ -10,7 +10,7 @@ export const PhotoAlbum = () => {
   return (
     <>
       <header className='App-header'>Photo Album</header>
-      <button onClick={retrievePhotos} className='App-button' disabled={albumNumber === ''}>
+      <button onClick={retrievePhotos} className='button' disabled={albumNumber === ''}>
         Retrieve photos
       </button>
       <label id='albumNumberLabel'>Album Number</label>

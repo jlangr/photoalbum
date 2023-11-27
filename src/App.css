@@ -29,12 +29,21 @@
   color: #61dafb;
 }
 
-.App-button {
-  background-color: blue;
+.button {
   padding: 16px;
-  font-size: 2rem;
-  border: 2px solid grey;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.enabled {
+  background-color: #4caf50;
   color: white;
+}
+
+.disabled {
+  background-color: #ddd;
+  color: #555;
+  cursor: not-allowed;
 }
 
 @keyframes App-logo-spin {
