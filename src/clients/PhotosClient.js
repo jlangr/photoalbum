@@ -8,7 +8,6 @@ export const fetchPhotos = async (url = productionRoute) => {
     return Promise.reject(new Error(`Fetch failed with status ${response.status}`))
 
   } catch (error) {
-    console.log(error);
     return Promise.reject(new Error(`Fetch errored`))
   }
 }

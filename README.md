@@ -1,17 +1,20 @@
 ## Usage instructions
 
+From the root of project, install Node dependencies:
+
+ `npm install`
+
 Start a local dev server:
 
   `npm start`
 
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-Run Tests:
+Open [http://localhost:3000](http://localhost:3000) in a browser.
+
+To run tests:
 
   `npm test`
-
-Launches the test runner in the interactive watch mode.\
 
 # Development notes
 
