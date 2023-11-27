@@ -1,11 +1,10 @@
-import {useState} from "react";
+import {useState} from 'react'
+import {fetchPhotos} from '../clients/PhotosClient'
 
 export const PhotoAlbum = () => {
   const [photos, setPhotos] = useState([])
 
-  const retrievePhotos = () => {
-    setPhotos([...photos, {id: '1', name: 'photo 1'}])
-  }
+  const retrievePhotos = async () => setPhotos(await fetchPhotos())
 
   return (
     <>
@@ -13,10 +12,9 @@ export const PhotoAlbum = () => {
       <button onClick={retrievePhotos} className='App-button'>
         Retrieve photos
       </button>
-      <div id='photos'>
-        {photos.map(photo => (
-          <p key={photo.id} role='article'>photo {photo.name}</p>
-        ))}
-      </div>
+      <ul id='photos'>
+        {photos.map(photo =>
+          (<li key={photo.id}>{photo.title}</li>))}
+      </ul>
     </>)
 }
