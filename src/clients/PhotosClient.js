@@ -1,12 +1,14 @@
-const productionRoute = 'https://jsonplaceholder.typicode.com/photos'
+export const productionRoute = 'https://jsonplaceholder.typicode.com/photos'
 
 export const fetchPhotos = async (url = productionRoute) => {
   try {
-    const response = await fetch(productionRoute)
+    const response = await fetch(url)
     if (response.ok) return await response.json()
 
-    console.error('Fetch failed')
+    return Promise.reject(new Error(`Fetch failed with status ${response.status}`))
+
   } catch (error) {
-    console.error('Fetch errored:', error)
+    console.log(error);
+    return Promise.reject(new Error(`Fetch errored`))
   }
 }
