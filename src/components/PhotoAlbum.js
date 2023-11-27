@@ -13,15 +13,12 @@ export const PhotoAlbum = () => {
 
   const isAlbumNumberEmpty = () => albumNumber === ''
 
-  const Photos = () => (
-    <ul id='photos'>
-      {photos.map(photo => Photo(photo))}
-    </ul>)
-
   const renderRetrievedPhotos = () =>
     (photos.length === 0
       ? <p>*** No matching photos found for album id {albumNumber}***</p>
-      : <Photos />)
+      : <ul id='photos'>
+          {photos.map(photo => (<Photo photo={photo}/>))}
+        </ul>)
 
   return (
     <>

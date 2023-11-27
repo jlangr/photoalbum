@@ -10,6 +10,8 @@ jest.mock('../../clients/PhotosClient')
 describe('PhotoAlbum', () => {
   const photoRole = 'listitem'
 
+  // TODO album number for header
+
   const typeIntoAlbumNumberInput = albumNumber => {
     const input = screen.getByRole('textbox')
     // eslint-disable-next-line testing-library/no-unnecessary-act
