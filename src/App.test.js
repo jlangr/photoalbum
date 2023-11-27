@@ -1,8 +1,10 @@
-import { render, screen } from '@testing-library/react';
+import {render, screen} from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+describe('renders learn react page', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+
+  it('contains photo album component', () => {
+    expect(screen.getByText('Photo Album')).toBeInTheDocument();
+  })
 });
