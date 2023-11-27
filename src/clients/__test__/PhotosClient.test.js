@@ -13,8 +13,16 @@ describe('retrieving photos', () => {
       .toEqual(new Error('Fetch failed with status 404'))
   })
 
-  xit('rejects on fetch throw', async () => {
-    await expect(fetchPhotos('https://localhost/xx')).rejects
-      .toEqual(new Error('Fetch errored'))
+  describe('tests that log to syserr', () => {
+    const error = console.error
+
+    beforeEach(() => console.error = () => {})
+
+    afterEach(() => console.error = error)
+
+    it('rejects on fetch throw', async () => {
+      await expect(fetchPhotos('https://localhost/xx')).rejects
+        .toEqual(new Error('Fetch errored'))
+    })
   })
 })
