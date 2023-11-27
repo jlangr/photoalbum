@@ -3,9 +3,11 @@ import {act, fireEvent, render, screen, waitFor} from '@testing-library/react'
 import {testPhotos} from './TestPhotos'
 import userEvent from "@testing-library/user-event"
 
-import { fetchPhotos } from '../../clients/PhotosClient'
+import {fetchPhotos} from '../../clients/PhotosClient'
+
 jest.mock('../../clients/PhotosClient')
 
+const photoRole = 'listitem';
 describe('PhotoAlbum', () => {
   const typeIntoAlbumNumberInput = albumNumber => {
     const input = screen.getByRole('textbox')
@@ -13,16 +15,15 @@ describe('PhotoAlbum', () => {
     act(() => userEvent.type(input, albumNumber))
   }
 
-  const clickRetrieveButton = () => {
-    const button = screen.getByRole('button')
-    fireEvent.click(button)
-  }
+  const retrieveButton = () => screen.getByRole('button')
+
+  const clickRetrieveButton = () => fireEvent.click(retrieveButton())
 
   describe('retrieve photos', () => {
     it('renders a button', () => {
       render(<PhotoAlbum/>)
 
-      const button = screen.getByRole('button')
+      const button = retrieveButton()
       expect(button).toBeInTheDocument()
       expect(button).toHaveTextContent('Retrieve photos')
     })
@@ -30,8 +31,7 @@ describe('PhotoAlbum', () => {
     it('disables button by default', () => {
       render(<PhotoAlbum/>)
 
-      const button = screen.getByRole('button')
-      expect(button).toBeDisabled()
+      expect(retrieveButton()).toBeDisabled()
     })
 
     it('enables button when input populated', async () => {
@@ -39,8 +39,7 @@ describe('PhotoAlbum', () => {
 
       typeIntoAlbumNumberInput('1');
 
-      const button = screen.getByRole('button')
-      expect(button).toBeEnabled()
+      expect(retrieveButton()).toBeEnabled()
     })
   })
 
@@ -48,7 +47,7 @@ describe('PhotoAlbum', () => {
     it('does not have any photos by default', () => {
       render(<PhotoAlbum/>)
 
-      expect(screen.queryByRole('listitem')).not.toBeInTheDocument()
+      expect(screen.queryByRole(photoRole)).not.toBeInTheDocument()
       expect(screen.queryByText('*** No matching photos found ***')).not.toBeInTheDocument()
     })
 
@@ -61,7 +60,7 @@ describe('PhotoAlbum', () => {
 
       expect(fetchPhotos).toHaveBeenCalledWith('2')
       await waitFor(() => {
-        expect(screen.getAllByRole('listitem')).toHaveLength(testPhotos.length)
+        expect(screen.getAllByRole(photoRole)).toHaveLength(testPhotos.length)
       })
     })
 

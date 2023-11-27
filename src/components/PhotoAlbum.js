@@ -8,7 +8,7 @@ export const PhotoAlbum = () => {
   const retrievePhotos = async () =>
     setPhotos(await fetchPhotos(albumNumber))
 
-  const headerAlbumNumber = photos?.length > 0 ? ` Album Number ${albumNumber}` : ''
+  const albumNumberForHeader = photos?.length > 0 ? ` Album Number ${albumNumber}` : ''
 
   const isAlbumNumberEmpty = () => albumNumber === ''
 
@@ -19,11 +19,13 @@ export const PhotoAlbum = () => {
     </ul>)
 
   const renderRetrievedPhotos = () =>
-    (photos.length === 0 ? <p>*** No matching photos found for album id {albumNumber}***</p> : Photos())
+    (photos.length === 0
+      ? <p>*** No matching photos found for album id {albumNumber}***</p>
+      : <Photos />)
 
   return (
     <>
-      <header className='App-header'>Photo Album{headerAlbumNumber}</header>
+      <header className='App-header'>Photo Album{albumNumberForHeader}</header>
       <button onClick={retrievePhotos} className='button' disabled={isAlbumNumberEmpty()}>
         Retrieve photos
       </button>
