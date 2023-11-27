@@ -1,30 +1,32 @@
-## Usage instructions
+# Usage instructions
 
-From the root of project, install Node dependencies:
+1. From the root of project, install Node dependencies:
 
  `npm install`
 
-Start a local dev server:
+2. Start a local dev server:
 
   `npm start`
 
-Runs the app in the development mode.\
+3. Open [http://localhost:3000](http://localhost:3000) in a browser.
 
-Open [http://localhost:3000](http://localhost:3000) in a browser.
-
-To run tests:
+# To run tests
 
   `npm test`
 
 # Development notes
 
-- delivering to one person, Emma Langston
-- building to requirements as stated unless otherwise specified
-- no need for internationalization. However: it's a pain to retro-introduce variables(?) for embedded text, particularly in HTML, so that is introduced here
+- Delivering to one person, Emma Langston
+- Building to requirements as stated unless otherwise specified
+- No need for internationalization. However: it's a pain to retro-introduce variables(?) for embedded text, particularly in HTML, so that is introduced here
+
+Next sensible functionality would be to render the thumbnails, which when then clicked on would render the full image. Not asked for.
+This would also be best rendered in a grid. Also not asked for, so right now it's rendered as a simple unnumbered list.
 
 ## Resources used
 
-- occasional query to google or ChapGPT
+- Occasional query to Google
+- Rubber duck
 
 ## Goals of solution
 

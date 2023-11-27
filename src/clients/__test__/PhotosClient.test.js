@@ -22,9 +22,7 @@ describe('contract tests for retrieving photos', () => {
 
   describe('things that log to syserr, so we can suppress', () => {
     const error = console.error
-
     beforeEach(() => console.error = () => {})
-
     afterEach(() => console.error = error)
 
     it('rejects on fetch throw', async () => {

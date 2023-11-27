@@ -49,6 +49,7 @@ describe('PhotoAlbum', () => {
       render(<PhotoAlbum/>)
 
       expect(screen.queryByRole('listitem')).not.toBeInTheDocument()
+      expect(screen.queryByText('*** No matching photos found ***')).not.toBeInTheDocument()
     })
 
     it('renders photos on submit', async () => {
@@ -61,6 +62,18 @@ describe('PhotoAlbum', () => {
       expect(fetchPhotos).toHaveBeenCalledWith('2')
       await waitFor(() => {
         expect(screen.getAllByRole('listitem')).toHaveLength(testPhotos.length)
+      })
+    })
+
+    it('shows messages when no photos retrieved', async () => {
+      fetchPhotos.mockReturnValueOnce(Promise.resolve([]))
+      render(<PhotoAlbum/>)
+      typeIntoAlbumNumberInput('999')
+
+      clickRetrieveButton()
+
+      await waitFor(() => {
+        expect(screen.getByText('*** No matching photos found for album id 999***')).toBeInTheDocument()
       })
     })
   })
