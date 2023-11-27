@@ -1,14 +1,15 @@
 import {PhotoAlbum} from '../PhotoAlbum'
 import {act, fireEvent, render, screen, waitFor} from '@testing-library/react'
 import {testPhotos} from './TestPhotos'
-import userEvent from "@testing-library/user-event"
+import userEvent from '@testing-library/user-event'
 
 import {fetchPhotos} from '../../clients/PhotosClient'
 
 jest.mock('../../clients/PhotosClient')
 
-const photoRole = 'listitem';
 describe('PhotoAlbum', () => {
+  const photoRole = 'listitem'
+
   const typeIntoAlbumNumberInput = albumNumber => {
     const input = screen.getByRole('textbox')
     // eslint-disable-next-line testing-library/no-unnecessary-act

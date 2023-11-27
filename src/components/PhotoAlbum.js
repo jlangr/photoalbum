@@ -1,5 +1,6 @@
 import {useState} from 'react'
 import {fetchPhotos} from '../clients/PhotosClient'
+import {Photo} from './Photo'
 
 export const PhotoAlbum = () => {
   const [photos, setPhotos] = useState(undefined)
@@ -14,8 +15,7 @@ export const PhotoAlbum = () => {
 
   const Photos = () => (
     <ul id='photos'>
-      {photos.map(photo =>
-        (<li key={photo.id}>{photo.albumId} {photo.title}</li>))}
+      {photos.map(photo => Photo(photo))}
     </ul>)
 
   const renderRetrievedPhotos = () =>
