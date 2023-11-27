@@ -60,6 +60,7 @@ describe('PhotoAlbum', () => {
 
       clickRetrieveButton();
 
+      // TODO how to verify album number is passed to the retrieve function
       await waitFor(() => {
         expect(screen.getAllByRole('listitem')).toHaveLength(testPhotos.length)
       })

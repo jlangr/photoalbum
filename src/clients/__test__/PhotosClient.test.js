@@ -20,7 +20,7 @@ describe('contract tests for retrieving photos', () => {
       .toEqual(new Error('Fetch failed with status 404'))
   })
 
-  describe('things that log to syserr', () => {
+  describe('things that log to syserr, so we can suppress', () => {
     const error = console.error
 
     beforeEach(() => console.error = () => {})

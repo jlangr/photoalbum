@@ -22,6 +22,10 @@ To run tests:
 - building to requirements as stated unless otherwise specified
 - no need for internationalization. However: it's a pain to retro-introduce variables(?) for embedded text, particularly in HTML, so that is introduced here
 
+## Resources used
+
+- occasional query to google or ChapGPT
+
 ## Goals of solution
 
 - Minimize over-engineering

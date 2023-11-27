@@ -7,13 +7,15 @@ export const PhotoAlbum = () => {
 
   const retrievePhotos = async () => setPhotos(await fetchPhotos(albumNumber))
 
+  const headerAlbumNumber = photos.length > 0 ? ` Album Number ${albumNumber}` : ''
+
   return (
     <>
-      <header className='App-header'>Photo Album</header>
+      <header className='App-header'>Photo Album{headerAlbumNumber}</header>
       <button onClick={retrievePhotos} className='button' disabled={albumNumber === ''}>
         Retrieve photos
       </button>
-      <label id='albumNumberLabel'>Album Number</label>
+      <label id='albumNumberLabel'>Enter an album number</label>
       <input id='albumNumber' type='text'
              required
              aria-label='album' aria-labelledby='albumNumberLabel'
@@ -22,7 +24,7 @@ export const PhotoAlbum = () => {
       />
       <ul id='photos'>
         {photos.map(photo =>
-          (<li key={photo.id}>{photo.title}</li>))}
+          (<li key={photo.id}>{photo.albumId} {photo.title}</li>))}
       </ul>
     </>)
 }
