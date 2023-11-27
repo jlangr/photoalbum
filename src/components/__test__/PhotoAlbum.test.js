@@ -21,8 +21,6 @@ describe('PhotoAlbum', () => {
   }
 
   describe('retrieve photos', () => {
-    // screen.debug()
-
     it('renders a button', () => {
       render(<PhotoAlbum/>)
 

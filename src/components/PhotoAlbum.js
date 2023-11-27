@@ -5,7 +5,7 @@ export const PhotoAlbum = () => {
   const [photos, setPhotos] = useState([])
   const [albumNumber, setAlbumNumber] = useState('')
 
-  const retrievePhotos = async () => setPhotos(await fetchPhotos())
+  const retrievePhotos = async () => setPhotos(await fetchPhotos(albumNumber))
 
   return (
     <>

@@ -19,11 +19,13 @@ To run tests:
 # Development notes
 
 - delivering to one person, Emma Langston
-- assuming simple requirements unless otherwise specified
+- building to requirements as stated unless otherwise specified
 - no need for internationalization. However: it's a pain to retro-introduce variables(?) for embedded text, particularly in HTML, so that is introduced here
 
 ## Goals of solution
 
 - Minimize over-engineering
-- Minimize effort spent, particularly in lieu of (a) getting MVP to customer to await further instruction
+- Minimize effort spent, so as to deliver MVP to customer sooner
+- Ensure high confidence that application works as expected, primarily through unit tests
+- Ensure high quality design to reduce cost of future change
 
