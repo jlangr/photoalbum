@@ -1,5 +1,5 @@
 import './App.css';
-import {PhotoAlbum} from "./PhotoAlbum";
+import {PhotoAlbum} from "./components/PhotoAlbum";
 
 const App = () => (
   <div className="App">
