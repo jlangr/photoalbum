@@ -3,7 +3,6 @@ import {act, fireEvent, render, screen, waitFor} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 
 import {fetchPhotos} from '../../clients/PhotosClient'
-
 jest.mock('../../clients/PhotosClient')
 
 describe('PhotoAlbum', () => {
@@ -34,7 +33,7 @@ describe('PhotoAlbum', () => {
       expect(retrieveButton()).toBeDisabled()
     })
 
-    it('is enabled button when input populated', async () => {
+    it('is enabled when input populated', async () => {
       render(<PhotoAlbum/>)
 
       typeIntoAlbumNumberInput('1');
@@ -68,7 +67,7 @@ describe('PhotoAlbum', () => {
         expect(screen.getAllByRole(photoRole)).toHaveLength(testPhotos.length))
     })
 
-    it('shows no photos message when none retrieved', async () => {
+    it('shows "no photos" message when none retrieved', async () => {
       fetchPhotos.mockReturnValueOnce(Promise.resolve([]))
       render(<PhotoAlbum/>)
       typeIntoAlbumNumberInput('999')
