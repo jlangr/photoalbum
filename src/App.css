@@ -1,5 +1,4 @@
 .App {
-  text-align: center;
 }
 
 .App-header {
@@ -14,8 +13,28 @@
   padding: 10px;
 }
 
-.button {
-  padding: 16px;
+.retrieve {
+  display: grid;
+  grid-template-columns: min-content min-content min-content;
+  gap: 10px;
+  align-items: center;
+  margin-left: 16px;
+  margin-top: 16px;
+}
+
+.retrieve label {
+  white-space: nowrap;
+}
+
+.retrieve input {
+  width: 64px;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.retrieve button {
+  width: 100%;
+  padding: 8px 16px;
   font-size: 1.2rem;
   cursor: pointer;
 }
@@ -29,4 +48,36 @@
   background-color: #ddd;
   color: #555;
   cursor: not-allowed;
+}
+
+.photos ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.photos li {
+  position: relative;
+  margin: 8px 0;
+  padding: 10px;
+  background-color: #f4f4f4;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Custom bullet style for list items with class .photos */
+.photos li::before {
+  content: '';
+  width: 10px;
+  height: 10px;
+  background-color: #3498db;
+  border-radius: 50%; /* circle */
+  position: absolute;
+  left: -20px;
+  top: 50%; /* center vertically */
+  transform: translateY(-50%); /* offset for centering */
+}
+
+.photos li:hover {
+  background-color: #e0e0e0;
+  transition: background-color 0.3s ease;
 }

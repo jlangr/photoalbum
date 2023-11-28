@@ -16,23 +16,25 @@ export const PhotoAlbum = () => {
   const renderRetrievedPhotos = () =>
     (photos.length === 0
       ? <p>*** No matching photos found for album id {albumNumber}***</p>
-      : <ul id='photos'>
-          {photos.map(photo => (<Photo photo={photo}/>))}
+      : <ul className='photos'>
+          {photos.map(photo => (<Photo key={photo.id} photo={photo}/>))}
         </ul>)
 
   return (
     <>
+      <div className='retrieve'>
+        <label id='albumNumberLabel'>Enter an album number</label>
+        <input id='albumNumber' type='text'
+               required
+               aria-label='album' aria-labelledby='albumNumberLabel'
+               value={albumNumber}
+               onChange={e => setAlbumNumber(e.target.value.trim())}
+        />
+        <button onClick={retrievePhotos} className='button' disabled={isAlbumNumberEmpty()}>
+          Retrieve photos
+        </button>
+      </div>
       <header className='App-header'>Photo Album{albumNumberForHeader}</header>
-      <button onClick={retrievePhotos} className='button' disabled={isAlbumNumberEmpty()}>
-        Retrieve photos
-      </button>
-      <label id='albumNumberLabel'>Enter an album number</label>
-      <input id='albumNumber' type='text'
-             required
-             aria-label='album' aria-labelledby='albumNumberLabel'
-             value={albumNumber}
-             onChange={e => setAlbumNumber(e.target.value.trim())}
-      />
       {photos && renderRetrievedPhotos()}
     </>)
 }

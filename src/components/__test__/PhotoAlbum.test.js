@@ -1,6 +1,5 @@
 import {PhotoAlbum} from '../PhotoAlbum'
 import {act, fireEvent, render, screen, waitFor} from '@testing-library/react'
-import {testPhotos} from './TestPhotos'
 import userEvent from '@testing-library/user-event'
 
 import {fetchPhotos} from '../../clients/PhotosClient'
@@ -9,8 +8,6 @@ jest.mock('../../clients/PhotosClient')
 
 describe('PhotoAlbum', () => {
   const photoRole = 'listitem'
-
-  // TODO album number for header
 
   const typeIntoAlbumNumberInput = albumNumber => {
     const input = screen.getByRole('textbox')
@@ -22,8 +19,8 @@ describe('PhotoAlbum', () => {
 
   const clickRetrieveButton = () => fireEvent.click(retrieveButton())
 
-  describe('retrieve photos', () => {
-    it('renders a button', () => {
+  describe('retrieve photos button', () => {
+    it('renders with proper text', () => {
       render(<PhotoAlbum/>)
 
       const button = retrieveButton()
@@ -31,13 +28,13 @@ describe('PhotoAlbum', () => {
       expect(button).toHaveTextContent('Retrieve photos')
     })
 
-    it('disables button by default', () => {
+    it('is disabled button by default', () => {
       render(<PhotoAlbum/>)
 
       expect(retrieveButton()).toBeDisabled()
     })
 
-    it('enables button when input populated', async () => {
+    it('is enabled button when input populated', async () => {
       render(<PhotoAlbum/>)
 
       typeIntoAlbumNumberInput('1');
@@ -47,12 +44,17 @@ describe('PhotoAlbum', () => {
   })
 
   describe('rendering photos', () => {
-    it('does not have any photos by default', () => {
+    it('shows no photos or message on page load', () => {
       render(<PhotoAlbum/>)
 
       expect(screen.queryByRole(photoRole)).not.toBeInTheDocument()
       expect(screen.queryByText('*** No matching photos found ***')).not.toBeInTheDocument()
     })
+
+    const testPhotos = [
+      { albumId: 1, id: 1, title: 'A' },
+      { albumId: 1, id: 2, title: 'B' }
+    ]
 
     it('renders photos on submit', async () => {
       fetchPhotos.mockReturnValueOnce(Promise.resolve(testPhotos))
@@ -62,12 +64,11 @@ describe('PhotoAlbum', () => {
       clickRetrieveButton()
 
       expect(fetchPhotos).toHaveBeenCalledWith('2')
-      await waitFor(() => {
-        expect(screen.getAllByRole(photoRole)).toHaveLength(testPhotos.length)
-      })
+      await waitFor(() =>
+        expect(screen.getAllByRole(photoRole)).toHaveLength(testPhotos.length))
     })
 
-    it('shows messages when no photos retrieved', async () => {
+    it('shows no photos message when none retrieved', async () => {
       fetchPhotos.mockReturnValueOnce(Promise.resolve([]))
       render(<PhotoAlbum/>)
       typeIntoAlbumNumberInput('999')
