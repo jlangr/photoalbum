@@ -8,7 +8,7 @@ describe('contract tests for retrieving photos', () => {
     expect(photos[0]?.title).not.toBe('')
   })
 
-  it('it returns only photos with specified album ID', async () => {
+  it('returns only photos with specified album ID', async () => {
     const photos = await fetchPhotos('1')
 
     expect(photos.length).toBeGreaterThan(0)

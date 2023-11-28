@@ -1,4 +1,6 @@
 import './App.css'
 import {PhotoAlbum} from './components/PhotoAlbum'
 
-export default () => (<div className="App"><PhotoAlbum /></div>)
+const app = () => (<div className="App"><PhotoAlbum /></div>)
+
+export default app

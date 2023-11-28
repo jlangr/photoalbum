@@ -19,6 +19,8 @@
 - Delivering to one person, Emma Langston
 - Building to requirements as stated unless otherwise specified
 - No need for internationalization. However: it's a pain to retro-introduce variables(?) for embedded text, particularly in HTML, so that is introduced here
+- No semicolons
+- React Testing Library not my favorite thing. It emanates a number of warnings that I chose to ignore after a short timeboxed attempt to eliminate them
 
 Next sensible functionality would be to render the thumbnails, which when then clicked on would render the full image. Not asked for.
 This would also be best rendered in a grid. Also not asked for, so right now it's rendered as a simple unnumbered list.

@@ -20,6 +20,8 @@ export const PhotoAlbum = () => {
           {photos.map(photo => (<Photo key={photo.id} photo={photo}/>))}
         </ul>)
 
+  const albumHeader = `Photo Album${albumNumberForHeader}`
+
   return (
     <>
       <div className='retrieve'>
@@ -28,13 +30,12 @@ export const PhotoAlbum = () => {
                required
                aria-label='album' aria-labelledby='albumNumberLabel'
                value={albumNumber}
-               onChange={e => setAlbumNumber(e.target.value.trim())}
-        />
+               onChange={e => setAlbumNumber(e.target.value.trim())}/>
         <button onClick={retrievePhotos} className='button' disabled={isAlbumNumberEmpty()}>
           Retrieve photos
         </button>
       </div>
-      <header className='App-header'>Photo Album{albumNumberForHeader}</header>
+      <header className='App-header'>{albumHeader}</header>
       {photos && renderRetrievedPhotos()}
     </>)
 }

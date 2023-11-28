@@ -75,9 +75,8 @@ describe('PhotoAlbum', () => {
 
       clickRetrieveButton()
 
-      await waitFor(() => {
-        expect(screen.getByText('*** No matching photos found for album id 999***')).toBeInTheDocument()
-      })
+      await waitFor(() =>
+        expect(screen.getByText('*** No matching photos found for album id 999***')).toBeInTheDocument())
     })
   })
 })
