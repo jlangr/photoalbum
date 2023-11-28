@@ -9,7 +9,7 @@ export const PhotoAlbum = () => {
   const retrievePhotos = async () =>
     setPhotos(await fetchPhotos(albumNumber))
 
-  const albumNumberForHeader = photos?.length > 0 ? ` Album Number ${albumNumber}` : ''
+  const albumNumberForHeader = photos?.length > 0 ? ` Number ${albumNumber}` : ''
 
   const isAlbumNumberEmpty = () => albumNumber === ''
 
